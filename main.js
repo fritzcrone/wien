@@ -17,10 +17,6 @@ L.tileLayer('https://mapsneu.wien.gv.at/basemap/bmapgrau/normal/google3857/{z}/{
     attribution: 'Hintergrundkarte: <a href="https://www.basemap.at">basemap.at</a>'
 }).addTo(map);
 
-// Marker mit Popup beim Stephansdom
-let marker = L.marker([stephansdom.lat, stephansdom.lng]).addTo(map);
-marker.bindPopup(stephansdom.title).openPopup();
-
 // Maßstab 
 L.control.scale({
     imperial: false,
@@ -36,3 +32,38 @@ async function loadSights(url) {
     attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"}).addTo(map);
 }
 loadSights("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json");
+
+// Kraftfahrlinien
+async function loadLines(url) {
+    //console.log(url);
+    let response = await fetch(url);
+    let jsondata = await response.json();
+    //console.log(jsondata);
+    L.geoJSON(jsondata,{
+    attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"}).addTo(map);
+}
+loadLines("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKLINIEVSLOGD&srsName=EPSG:4326&outputFormat=json");
+
+// Haltestellen
+async function loadStops(url) {
+    //console.log(url);
+    let response = await fetch(url);
+    let jsondata = await response.json();
+    //console.log(jsondata);
+    L.geoJSON(jsondata,{
+    attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"}).addTo(map);
+}
+loadStops("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKHTSVSLOGD&srsName=EPSG:4326&outputFormat=json")
+
+    // Fußgängerzonen
+
+    async function loadZones(url) {
+        //console.log(url);
+        let response = await fetch(url);
+        let jsondata = await response.json();
+        //console.log(jsondata);
+        L.geoJSON(jsondata,{
+        attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"}).addTo(map);
+    }
+loadZones("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:FUSSGEHERZONEOGD&srsName=EPSG:4326&outputFormat=json")
+
