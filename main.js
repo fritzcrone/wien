@@ -16,15 +16,12 @@ let overlays= {
     sights: L.featureGroup().addTo(map),
     lines: L.featureGroup().addTo(map),
     stops: L.featureGroup().addTo(map),
-    zones: L.featureGroup().addTo(map),
+    zones: L.featureGroup(),//.addTo(map), Komma und Kommentar entfernen
 }
 
 // Layercontrol
 L.control.layers({
-"BasemapAT grau": L.tileLayer('https://mapsneu.wien.gv.at/basemap/bmapgrau/normal/google3857/{z}/{y}/{x}.png', {
-    maxZoom: 19,
-    attribution: 'Hintergrundkarte: <a href="https://www.basemap.at">basemap.at</a>'
-    }).addTo(map)
+"BasemapAT grau": L.tileLayer.provider('Stadia.StamenWatercolor').addTo(map)
 },{
  "Sehenswürdigkeiten": overlays.sights,
  "Vienna sightseeing Linien": overlays.lines,
@@ -44,7 +41,7 @@ async function loadSights(url) {
     let jsondata = await response.json();
     //console.log(jsondata);
     L.geoJSON(jsondata,{
-    attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"}).addTo(map);
+    attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"}).addTo(overlays.sights);
 }
 
 // Kraftfahrlinien
@@ -54,7 +51,7 @@ async function loadLines(url) {
     let jsondata = await response.json();
     //console.log(jsondata);
     L.geoJSON(jsondata,{
-    attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"}).addTo(map);
+    attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"}).addTo(overlays.lines);
 }
 
 // Haltestellen
@@ -64,7 +61,7 @@ async function loadStops(url) {
     let jsondata = await response.json();
     //console.log(jsondata);
     L.geoJSON(jsondata,{
-    attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"}).addTo(map);
+    attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"}).addTo(overlays.stops);
 }
 
     // Fußgängerzonen
@@ -74,7 +71,7 @@ async function loadStops(url) {
         let jsondata = await response.json();
         //console.log(jsondata);
         L.geoJSON(jsondata,{
-        attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"}).addTo(map);
+        attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"}).addTo(overlays.zones);
     }
    
    // GeoJSON laden und visualisieren
