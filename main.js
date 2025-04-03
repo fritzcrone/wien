@@ -11,8 +11,13 @@ let stephansdom = {
 // Karte initialisieren
 let map = L.map("map").setView([stephansdom.lat, stephansdom.lng], stephansdom.zoom);
 
-// Hintergrundkarte definieren
-
+// Overlays definieren
+let overlays= { 
+    sights: L.featureGroup().addTo(map),
+    lines: L.featureGroup().addTo(map),
+    stops: L.featureGroup().addTo(map),
+    zones: L.featureGroup().addTo(map),
+}
 
 // Layercontrol
 L.control.layers({
