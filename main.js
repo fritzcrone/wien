@@ -31,7 +31,6 @@ async function loadSights(url) {
     L.geoJSON(jsondata,{
     attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"}).addTo(map);
 }
-loadSights("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json");
 
 // Kraftfahrlinien
 async function loadLines(url) {
@@ -42,7 +41,6 @@ async function loadLines(url) {
     L.geoJSON(jsondata,{
     attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"}).addTo(map);
 }
-loadLines("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKLINIEVSLOGD&srsName=EPSG:4326&outputFormat=json");
 
 // Haltestellen
 async function loadStops(url) {
@@ -53,11 +51,9 @@ async function loadStops(url) {
     L.geoJSON(jsondata,{
     attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"}).addTo(map);
 }
-loadStops("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKHTSVSLOGD&srsName=EPSG:4326&outputFormat=json")
 
     // Fußgängerzonen
-
-    async function loadZones(url) {
+ async function loadZones(url) {
         //console.log(url);
         let response = await fetch(url);
         let jsondata = await response.json();
@@ -65,5 +61,10 @@ loadStops("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&vers
         L.geoJSON(jsondata,{
         attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"}).addTo(map);
     }
-loadZones("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:FUSSGEHERZONEOGD&srsName=EPSG:4326&outputFormat=json")
+   
+   // GeoJSON laden und visualisieren
+    loadSights("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json");
+    loadLines("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKLINIEVSLOGD&srsName=EPSG:4326&outputFormat=json");
+    loadStops("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKHTSVSLOGD&srsName=EPSG:4326&outputFormat=json")
+    loadZones("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:FUSSGEHERZONEOGD&srsName=EPSG:4326&outputFormat=json")
 
