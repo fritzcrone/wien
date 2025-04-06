@@ -35,6 +35,7 @@ L.control.layers({
     "Vienna sightseeing Linien": overlays.lines,
     "Vienna sighseeing Haltestellen": overlays.stops,
     "Fußgängerzonen": overlays.zones,
+    "Hotels": overlays.hotels,
 }).addTo(map);
 
 // Maßstab 
@@ -94,9 +95,8 @@ async function loadHotels(url) {
     //console.log(jsondata);
     L.geoJSON(jsondata, {
         attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"
-    }).addTo(overlays.zones);
+    }).addTo(overlays.hotels);
 }
-
 
 // GeoJSON laden und visualisieren
 loadSights("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json");
