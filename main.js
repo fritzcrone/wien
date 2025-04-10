@@ -83,7 +83,16 @@ async function loadZones(url) {
     let jsondata = await response.json();
     //console.log(jsondata);
     L.geoJSON(jsondata, {
-        attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"
+        attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>",
+        function (feature) {
+            console.log(feature);
+            return {
+               color: '#F012BE',
+               weight: 10,
+               opacity: 0.4,
+               fillOpacity: 0.1,
+            }
+        }
     }).addTo(overlays.zones);
 }
 
