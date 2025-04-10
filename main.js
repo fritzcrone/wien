@@ -136,7 +136,7 @@ async function loadHotels(url) {
     L.geoJSON(jsondata, {
         attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>",
         pointToLayer: function (feature, latlng) {
-            console.log(feature.properties.KATEGORIE_TXT);
+            // console.log(feature.properties.KATEGORIE_TXT);
             let iconName;
             if (feature.properties.KATEGORIE_TXT == "1*") {
                 iconName = "hotel_1stars.png";
