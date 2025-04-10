@@ -61,18 +61,6 @@ async function loadLines(url) {
     let jsondata = await response.json();
     //console.log(jsondata);
     L.geoJSON(jsondata, {
-        attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"
-    }).addTo(overlays.lines);
-}
-
-// Haltestellen
-async function loadStops(url) {
-    //console.log(url);
-    let response = await fetch(url);
-    let jsondata = await response.json();
-    //console.log(jsondata);
-
-    L.geoJSON(jsondata, {
         attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>",
         style: function (feature) {
             console.log(feature.properties.LINE_NAME);
@@ -91,13 +79,22 @@ async function loadStops(url) {
             } else if (feature.properties.LINE_NAME == "Green Line") {
                 lineColor = "#2ECC40";
             }
+
             return {
-                color: '#39CCCC',
-                weight: 1,
-                opacity: 0.4,
-                fillOpacity: 0.1,
+                color: lineColor
             }
         }
+    }).addTo(overlays.lines);
+}
+
+// Haltestellen
+async function loadStops(url) {
+    //console.log(url);
+    let response = await fetch(url);
+    let jsondata = await response.json();
+    //console.log(jsondata);
+    L.geoJSON(jsondata, {
+        attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>"
     }).addTo(overlays.stops);
 }
 
