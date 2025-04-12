@@ -36,8 +36,8 @@ L.control.layers({
 
 }, {
     "Sehenswürdigkeiten": overlays.sights,
-    "Vienna sightseeing Linien": overlays.lines,
-    "Vienna sighseeing Haltestellen": overlays.stops,
+    "Vienna Sightseeing Linien": overlays.lines,
+    "Vienna Sightseeing Haltestellen": overlays.stops,
     "Fußgängerzonen": overlays.zones,
     "Hotels": overlays.hotels,
 }).addTo(map);
@@ -87,7 +87,7 @@ async function loadLines(url) {
             //console.log(feature.properties.LINE_NAME);
             let lineColor;
 
-            if (feature.properties.Line_NAME == "Yellow Line") {
+            if (feature.properties.LINE_NAME == "Yellow Line") {
                 lineColor = "#FFDC00";
             } else if (feature.properties.LINE_NAME == "Blue Line") {
                 lineColor = "#0074D9";
