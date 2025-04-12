@@ -167,8 +167,8 @@ async function loadZones(url) {
             //console.log(feature.properties);
             layer.bindPopup(`
                 <h4>Fußgängerzone ${feature.properties.ADRESSE}</h4>
-                <p><i class="fa-regular fa-clock"></i> ${feature.properties.ZEITRAUM}</p>
-                <p><i class="fa-solid fa-circle-info"></i> ${feature.properties.AUSN_TEXT}</p>
+                <p><i class="fa-regular fa-clock"></i> ${feature.properties.ZEITRAUM||"Permanente Fußgängerzone"}</p>
+                <p><i class="fa-solid fa-circle-info"></i> ${feature.properties.AUSN_TEXT || "Keine Ausnahmeregelungen"}</p>
                 `);
         }
     }).addTo(overlays.zones);
@@ -213,10 +213,10 @@ async function loadHotels(url) {
                 <h3>${feature.properties.BETRIEB}</h3>
                 <h4>Hotel ${feature.properties.KATEGORIE_TXT}</h4>
                 <hr>
-                <p>Addr.: ${feature.properties.ADRESSE}<br>
+                <address>Addr.: ${feature.properties.ADRESSE}<br>
                 Tel.: <a href= "tel:${feature.properties.KONTAKT_TEL}">${feature.properties.KONTAKT_TEL}</a><br>
                 <a href= "mailto:${feature.properties.KONTAKT_EMAIL}">${feature.properties.KONTAKT_EMAIL}</a><br>
-                <a href= "${feature.properties.WEBLINK1}" target="wien">Homepage</a></p>
+                <a href= "${feature.properties.WEBLINK1}" target="wien">Homepage</a></address>
                 `);
         }
     }).addTo(overlays.hotels);
