@@ -119,10 +119,10 @@ async function loadLines(url) {
 
 // Haltestellen
 async function loadStops(url) {
-    //console.log(url);
+    console.log(url);
     let response = await fetch(url);
     let jsondata = await response.json();
-    //console.log(jsondata);
+    console.log(jsondata);
     L.geoJSON(jsondata, {
         attribution: "Datenquelle: <a href= 'https://data.wien.gv.at'> Stadt Wien</a>",
         pointToLayer: function (feature, latlng) {
@@ -137,10 +137,10 @@ async function loadStops(url) {
             });
         },
         onEachFeature: function (feature, layer) {
-            //console.log(feature.properties);
+            console.log(feature.properties);
             layer.bindPopup(`
                 <h4><i class="fa-solid fa-bus"></i> ${feature.properties.LINE_NAME}</h4>
-                <p>${feature.properties.STAT_NAME}</p>
+                <p>${feature.properties.STAT_ID} ${feature.properties.STAT_NAME}</p>
                 `);
         }
     }).addTo(overlays.stops);
